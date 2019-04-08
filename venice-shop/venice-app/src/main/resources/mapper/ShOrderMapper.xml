@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.plusesb.mapper.ShOrderMapper">
+
+    <select id="findPageBySql" parameterType="hashmap" resultType="com.plusesb.entity.ShOrderEntity">
+        select t.* from sh_order t
+        where t.id not in (select b.order_id from sh_order_return b where b.status = 0)
+        and t.appid = #{params.appid}
+        <if test="params.order_status != null and params.order_status != ''">
+            and t.order_status = #{params.order_status}
+        </if>
+        <if test="params.pay_status != null and params.pay_status != ''">
+            and t.pay_status = #{params.pay_status}
+        </if>
+        <if test="params.shipping_status != null and params.shipping_status != ''">
+            and t.shipping_status = #{params.shipping_status}
+        </if>
+        <if test="params.order_number != null and params.order_number != ''">
+            and t.order_number like concat('%',#{params.order_number},'%')
+        </if>
+        order by t.create_time desc
+    </select>
+
+    <select id="findPageByUserId" resultType="com.plusesb.entity.ShOrderEntity">
+        SELECT t.* from sh_order t where t.user_id = #{params.userId}
+        <if test="params.order_status != null and params.order_status != ''">
+            and t.order_status = #{params.order_status}
+        </if>
+        <if test="params.pay_status != null and params.pay_status != ''">
+            and t.pay_status = #{params.pay_status}
+        </if>
+        <if test="params.shipping_status != null and params.shipping_status != ''">
+            and t.shipping_status = #{params.shipping_status}
+        </if>
+        and t.id not in (select b.order_id from sh_order_return b where b.status = 0)
+        order by t.create_time desc
+    </select>
+
+    <select id="countByUserIdAndStatusSql" resultType="java.lang.Integer">
+        SELECT count(*) from sh_order t where 1=1
+        <if test="params.order_status != null and params.order_status != ''">
+            and t.order_status = #{params.order_status}
+        </if>
+        <if test="params.user_id != null and params.user_id != ''">
+            and t.user_id = #{params.user_id}
+        </if>
+        <if test="params.appid != null and params.appid != ''">
+            and t.appid = #{params.appid}
+        </if>
+        <if test="params.pay_status != null and params.pay_status != ''">
+            and t.pay_status = #{params.pay_status}
+        </if>
+        <if test="params.shipping_status != null and params.shipping_status != ''">
+            and t.shipping_status = #{params.shipping_status}
+        </if>
+        <if test="params.pay_time != null and params.pay_time != ''">
+            and t.pay_time >= #{params.pay_time}
+        </if>
+        and t.id not in (select b.order_id from sh_order_return b where b.status = 0)
+        order by t.create_time desc
+    </select>
+     <select id="sumTodayMoney" resultType="java.lang.Integer">
+        SELECT sum(t.actual_price) from sh_order t where 1=1
+        <if test="params.user_id != null and params.user_id != ''">
+            and t.user_id = #{params.user_id}
+        </if>
+        <if test="params.appid != null and params.appid != ''">
+            and t.appid = #{params.appid}
+        </if>
+        <if test="params.order_status != null and params.order_status != ''">
+            and t.order_status = #{params.order_status}
+        </if>
+        <if test="params.pay_status != null and params.pay_status != ''">
+            and t.pay_status = #{params.pay_status}
+        </if>
+        <if test="params.shipping_status != null and params.shipping_status != ''">
+            and t.shipping_status = #{params.shipping_status}
+        </if>
+        <if test="params.pay_time != null and params.pay_time != ''">
+            and t.pay_time >= #{params.pay_time}
+        </if>
+        and t.id not in (select b.order_id from sh_order_return b where b.status = 0)
+        order by t.create_time desc
+    </select>
+</mapper>

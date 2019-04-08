@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="venice-app" />
+        <module name="venice-common" />
+        <module name="venice-framework" />
+        <module name="venice-shiro" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="venice-app" target="1.8" />
+      <module name="venice-common" target="1.8" />
+      <module name="venice-framework" target="1.8" />
+      <module name="venice-shiro" target="1.8" />
+      <module name="venice-shop" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

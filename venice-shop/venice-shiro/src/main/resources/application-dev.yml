@@ -1,0 +1,52 @@
+# Tomcat
+server:
+    tomcat:
+        uri-encoding: UTF-8
+        max-threads: 1000
+        min-spare-threads: 30
+    port: 8081
+    connection-timeout: 5000
+spring:
+    datasource:
+        type : com.alibaba.druid.pool.DruidDataSource
+        driver-class-name : com.mysql.jdbc.Driver
+        url: jdbc:mysql://123.207.86.66:3306/javashop?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
+        username : root
+        password:  xie123
+        druid:
+          initial-size : 5
+          min-idle : 5
+          max-active : 500
+          max-wait : 10
+          time-between-eviction-runs-millis : 60000
+          test-while-idle : true
+          test-on-return : true
+          test-on-borrow : true
+          validation-query : SELECT 1
+          filters : stat
+          connection-properties : druid.stat.slowSqlMillis=5000
+          remove-abandoned: true
+          remove-abandoned-timeout: 21600
+          log-abandoned: true
+
+    session:
+        store-type: redis
+venice:
+  back_url: http://linyuchi.mynatapp.cc
+wx:
+  miniapp:
+    configs:
+        - appid: #微信小程序appid
+          secret: #微信小程序secret
+          token: #微信小程序消息服务器配置的token
+          aesKey: #微信小程序消息服务器配置的EncodingAESKey
+          msgDataFormat: JSON
+  pay:
+    appId: #微信小程序appid
+    mchId: #微信支付商户iid
+    mchKey: #微信支付商户密钥
+    subAppId: #服务商模式下的子商户公众账号ID
+    subMchId: #服务商模式下的子商户号
+    keyPath: # p12证书的位置，可以指定绝对路径，也可以指定类路径（以classpath:开头）
+    notify_url: http://linyuchi.mynatapp.cc
+#debug: true

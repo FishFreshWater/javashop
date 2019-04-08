@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.plusesb.mapper.ShGoodsMapper">
+    <update id="updateIsDeleteByIds" parameterType="java.util.List">
+        UPDATE sh_goods SET is_delete = 1 WHERE id IN
+        <foreach collection="ids" item="id" index="index"
+                 open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </update>
+    <update id="updateIsOnSaleById">
+        UPDATE sh_goods SET is_on_sale = #{isOnSale} WHERE id = #{id}
+    </update>
+
+
+    <select id="findPageBySql" parameterType="hashmap" resultType="com.plusesb.entity.ShGoodsEntity">
+        select a.*,b.name as shGoodsCategoryName,c.`name` as shBrandName from sh_goods a
+        left join sh_goods_category b
+        on a.category_id=b.id
+        left join sh_brand c
+        on a.brand_id = c.id
+        where 1=1 and is_delete = 0
+        <if test="map.appid != null and map.appid != ''">
+            and a.appid = #{map.appid}
+        </if>
+        <if test="map.name != null and map.name.trim() != ''">
+            AND a.name LIKE concat('%',#{map.name},'%')
+        </if>
+        order by a.id desc
+    </select>
+
+
+    <select id="listInfoById" resultType="com.plusesb.entity.ShGoodsEntity">
+        select a.*,b.file_url as primaryPicFullUrl from sh_goods a left join mini_attachment b on a.primary_pic_url=b.id
+        where a.id=#{id} and is_delete = 0
+    </select>
+
+
+    <select id="findAllByQueryWrapper" parameterType="hashmap" resultType="com.plusesb.entity.ShGoodsEntity">
+        SELECT a.*,b.name as shGoodsCategoryName FROM sh_goods a
+        left join sh_goods_category b
+        on a.category_id=b.id
+        <where>
+            ${ew.sqlSegment}
+        </where>
+    </select>
+
+    <select id="queryTotal" resultType="java.lang.Integer">
+        select count(*) from sh_goods
+        <where>
+            ${ew.sqlSegment}
+        </where>
+    </select>
+
+
+</mapper>

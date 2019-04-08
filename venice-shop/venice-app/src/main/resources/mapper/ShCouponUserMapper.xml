@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.plusesb.mapper.ShCouponUserMapper">
+
+    <select id="queryUserCouponList" resultType="com.plusesb.entity.ShCouponUserEntity">
+        select *
+        from sh_coupon_user a
+        where 1 = 1
+        and a.effect_time >= now()
+        and now() >= a.expir_time
+        and a.coupon_status = 0
+        and a.user_id = #{user_id}
+    </select>
+    <select id="findByUserIdAndCouponStatus" resultType="com.plusesb.dto.ShCouponDTO">
+        SELECT
+          t.*,
+          b.`coupon_number`,
+          b.`coupon_status`,
+          b.`order_id`,
+          b.`used_time`,
+          b.`user_id` ,
+            b.expir_time,
+            b.effect_time,
+          b.`id` AS couponUserId
+
+        FROM
+          sh_coupon t
+          LEFT JOIN sh_coupon_user b
+            ON b.`coupon_id` = t.`id`
+        WHERE  1 = 1
+        <if test="param.userId != null and param.userId != ''">
+            and b.user_id = #{param.userId}
+        </if>
+        <if test="param.status != null and param.status != ''">
+            and b.coupon_status = #{param.status}
+        </if>
+        <if test="param.userCouponId != null and param.userCouponId != ''">
+            and b.id = #{param.userCouponId}
+        </if>
+    </select>
+    <select id="findPageByUserIdAndStatus" resultType="com.plusesb.dto.ShCouponDTO">
+        SELECT
+        t.*,
+        b.`coupon_number`,
+        b.`coupon_status`,
+        b.`order_id`,
+        b.`used_time`,
+        b.`user_id` ,
+        b.`id` AS couponUserId,
+        b.expir_time,
+        b.effect_time
+        FROM
+        sh_coupon t
+        LEFT JOIN sh_coupon_user b
+        ON b.`coupon_id` = t.`id`
+        WHERE  1 = 1
+        <if test="param.userId != null and param.userId != ''">
+            and b.user_id = #{param.userId}
+        </if>
+        <if test="param.status != null and param.status != ''">
+            and b.coupon_status = #{param.status}
+        </if>
+    </select>
+    <update id="updateTimeOutStatus">
+        UPDATE sh_coupon_user SET coupon_status = 3 where user_id = #{userId} and  now() > expir_time and coupon_status = 1
+    </update>
+
+</mapper>

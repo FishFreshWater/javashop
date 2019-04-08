@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.plusesb.mapper.ShTopicMapper">
+
+
+    <select id="findRelatedGoodsByTopicId" resultType="com.plusesb.entity.ShGoodsEntity">
+        SELECT a.id,a.name,a.primary_pic_url as primaryPicUrl,a.goods_brief as goodsBrief,a.retail_price as retailPrice,b.name as shGoodsCategoryName from sh_goods a
+        left join sh_goods_category b
+        on a.category_id=b.id
+        WHERE  a.id in (select goods_id FROM sh_topic_goods WHERE topic_id= #{id})
+    </select>
+</mapper>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.plusesb.mapper.ShCouponMapper">
+    <update id="updateStatusById">
+        UPDATE sh_coupon SET status = #{status} where id = #{id}
+    </update>
+
+    <select id="findPageByAppId" resultType="com.plusesb.entity.ShCouponEntity">
+        SELECT * from sh_coupon t WHERE t.appid = #{appid}
+        and t.id not in ( select coupon_id from sh_coupon_user where user_id = #{userId})
+        and t.status = 1 and  t.`start_day`  <![CDATA[ <=]]> DATE_FORMAT(NOW(),'%Y-%m-%d') and t.`end_day` <![CDATA[ >= ]]>  DATE_FORMAT(NOW(),'%Y-%m-%d')
+    </select>
+
+
+</mapper>
