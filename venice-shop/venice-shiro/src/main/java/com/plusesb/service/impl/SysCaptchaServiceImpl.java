@@ -30,6 +30,8 @@ import org.springframework.stereotype.Service;
 
 import java.awt.image.BufferedImage;
 import java.util.Date;
+import java.util.Random;
+import java.util.UUID;
 
 /**
  * 验证码
@@ -48,7 +50,9 @@ public class SysCaptchaServiceImpl extends BaseServiceImpl<SysCaptchaMapper, Sys
             throw new RRException("uuid不能为空");
         }
         //生成文字验证码
-        String code = producer.createText();
+//        String code = producer.createText();
+        //改用数字验证码
+        String code = StringUtils.abbreviate(UUID.randomUUID()+"",4);
 
         SysCaptchaEntity captchaEntity = new SysCaptchaEntity();
         captchaEntity.setUuid(uuid);

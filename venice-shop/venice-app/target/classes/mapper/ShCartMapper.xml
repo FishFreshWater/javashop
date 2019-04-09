@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.plusesb.mapper.ShCartMapper">
+
+
+    <update id="updateCheck">
+        update sh_cart
+        set `checked` = #{isChecked}
+        where product_id in
+        <foreach item="product_id" collection="productIds" open="(" separator="," close=")">
+            #{product_id}
+        </foreach>
+        and user_id = #{userId}
+    </update>
+    <delete id="deleteByUserAndProductIds">
+        delete from sh_cart where product_id in
+        <foreach item="id" collection="productIds" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+        and user_id = #{userId}
+    </delete>
+    <select id="findByUserId" resultType="com.plusesb.entity.ShCartEntity">
+        SELECT a.* ,b.thumbnail_url as thumbnailUrl,b.spec_value as specValue,b.retail_price as retailPrice ,c.name as goodsName
+        from sh_cart a LEFT join sh_product b on a.product_id = b.id LEFT join sh_goods c on c.id = a.goods_id
+        where  a.user_id = #{user_id}
+    </select>
+
+    <select id="findBySql" parameterType="hashmap" resultType="com.plusesb.entity.ShCartEntity">
+        select a.*,b.name as goodsName from sh_cart a left join sh_goods b
+            on a.goods_id = b.id
+        where 1=1
+        <if test="appid != null and appid != ''">
+            and a.appid = #{appid}
+        </if>
+        <if test="user_id != null and user_id != ''">
+            and a.user_id = #{user_id}
+        </if>
+        order by a.id desc
+    </select>
+</mapper>

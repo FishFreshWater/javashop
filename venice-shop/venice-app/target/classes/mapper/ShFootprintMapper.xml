@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.plusesb.mapper.ShFootprintMapper">
+
+
+    <select id="findPageBySql" resultType="com.plusesb.entity.ShFootprintEntity">
+        SELECT
+				f.id id,
+				f.user_id AS userId,
+				f.goods_id AS goodsId,
+				DATE_FORMAT(f.create_time ,'%Y-%m-%d') AS createTime,
+				g.name AS goodsName,
+				g.primary_pic_url AS primaryPicUrl,
+				g.goods_brief AS goodsBrief,
+				g.retail_price AS retailPrice
+			FROM
+				sh_footprint f
+			  LEFT JOIN sh_goods g ON f.goods_id = g.id
+			WHERE
+				f.user_id = #{map.user_id} GROUP BY goods_id
+			 ORDER BY
+				 f.create_time DESC
+
+    </select>
+</mapper>

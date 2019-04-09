@@ -1,0 +1,79 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.plusesb.utils.JwtUtils",
+      "name": "venice.jwt",
+      "type": "com.plusesb.utils.JwtUtils"
+    },
+    {
+      "sourceType": "com.plusesb.config.WxMaProperties",
+      "name": "wx.miniapp",
+      "type": "com.plusesb.config.WxMaProperties"
+    },
+    {
+      "sourceType": "com.plusesb.config.WxPayProperties",
+      "name": "wx.pay",
+      "type": "com.plusesb.config.WxPayProperties"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "com.plusesb.utils.JwtUtils",
+      "defaultValue": 0,
+      "name": "venice.jwt.expire",
+      "type": "java.lang.Long"
+    },
+    {
+      "sourceType": "com.plusesb.utils.JwtUtils",
+      "name": "venice.jwt.header",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.plusesb.utils.JwtUtils",
+      "name": "venice.jwt.secret",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.plusesb.config.WxMaProperties",
+      "name": "wx.miniapp.configs",
+      "type": "java.util.List<com.plusesb.config.WxMaProperties.Config>"
+    },
+    {
+      "sourceType": "com.plusesb.config.WxPayProperties",
+      "name": "wx.pay.app-id",
+      "description": "设置微信公众号或者小程序等的appid",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.plusesb.config.WxPayProperties",
+      "name": "wx.pay.key-path",
+      "description": "apiclient_cert.p12文件的绝对路径，或者如果放在项目中，请以classpath:开头指定",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.plusesb.config.WxPayProperties",
+      "name": "wx.pay.mch-id",
+      "description": "微信支付商户号",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.plusesb.config.WxPayProperties",
+      "name": "wx.pay.mch-key",
+      "description": "微信支付商户密钥",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.plusesb.config.WxPayProperties",
+      "name": "wx.pay.sub-app-id",
+      "description": "服务商模式下的子商户公众账号ID，普通模式请不要配置，请在配置文件中将对应项删除",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.plusesb.config.WxPayProperties",
+      "name": "wx.pay.sub-mch-id",
+      "description": "服务商模式下的子商户号，普通模式请不要配置，最好是请在配置文件中将对应项删除",
+      "type": "java.lang.String"
+    }
+  ]
+}
