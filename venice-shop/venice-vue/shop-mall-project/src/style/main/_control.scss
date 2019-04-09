@@ -1,0 +1,42 @@
+.control {
+  height: 100%;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  position: relative;
+  background: #fff;
+  .control__header {
+    color: #333;
+    line-height: 50px;
+    border-bottom: 1px solid #e2e5ec;
+    padding-left: 30px;
+    font-size: 14px;
+    position: relative;
+  }
+  .el-tabs__content {
+    width: 100%;
+    padding: 0 15px 15px;
+  }
+  .aui-control__setting{
+    margin: 0;
+  }
+  .aui-control__setting>dt{
+    margin-top: 15px;
+    font-size: 18px;
+    font-weight: 900;
+  }
+  .aui-control__setting>dd{
+    margin-top: 10px;
+    margin-left: 1em;
+  }
+}
+.l-mainbody{
+  padding: 100px 12px 12px 12px;
+}
+.l-container .el-menu-item,.l-container .el-submenu__title{
+  height: 42px !important;
+  line-height: 42px !important;
+}
+.l-container .el-button--mini{
+  padding: 5px 12px 5px 7px !important;
+  font-size: 20px !important;
+}

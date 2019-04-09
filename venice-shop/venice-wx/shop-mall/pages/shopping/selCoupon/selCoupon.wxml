@@ -1,0 +1,59 @@
+<view class="container">
+  <view class='not-use' bindtap='noUseCoupon'>不使用优惠券</view>
+  <view class="help">使用说明</view>
+  <show-empty-data wx:if="{{couponList.length<=0}}" showType="NO_COUPON"></show-empty-data>
+  <view wx:else class="coupon-list">
+    <block wx:for="{{couponListUse}}" wx:for-index="index" wx:for-item="item" wx:key="{{item.id}}">
+      <view class='coupon-item' catchtap='tapCoupon' data-item="{{ item }}">
+        <view class='item'>
+          <image class='img-left' src='https://venice-test-bucket.oss-cn-beijing.aliyuncs.com/icon/blue.png'></image>
+          <view class='content'>
+            <view class='content-item'>
+              <view class='item-1 clearfix'>
+                <view class='price'>
+                  <text>￥</text>
+                  {{item.couponBalance}}
+                </view>
+                <view class='name-adr'>
+                  <view class='name ell'>{{item.couponName}}</view>
+                  <view class='adr ell'>满{{item.limitBalance}}元可用</view>
+                </view>
+              </view>
+              <view class='time'>
+                使用时间{{item.startDay}} ~ {{item.endDay}}
+              </view>
+              <image class='jt' src='../../../static/images/go.png'></image>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+    <block wx:for="{{couponListNoUse}}" wx:for-index="index" wx:for-item="item" wx:key="{{item.id}}">
+      <view class='coupon-item' data-item="{{ item }}">
+        <view class='item item-no-use'>
+          <image class='img-left' src='https://venice-test-bucket.oss-cn-beijing.aliyuncs.com/icon/blue.png'></image>
+          <view class='content'>
+            <view class='content-item'>
+              <view class='item-1 clearfix'>
+                <view class='price'>
+                  <text>￥</text>
+                  {{item.couponBalance}}
+                </view>
+                <view class='name-adr'>
+                  <view class='name ell'>{{item.couponName}}</view>
+                  <view class='adr ell'>满{{item.limitBalance}}元可用</view>
+                </view>
+              </view>
+              <view class='time'>
+                使用时间{{item.startDay}} ~ {{item.endDay}}
+              </view>
+              <image class='jt' src='../../../static/images/go.png'></image>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    </view>
+
+</view>

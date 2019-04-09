@@ -1,0 +1,38 @@
+.aui-wrapper {
+    position: relative;
+    min-height: 100vh;
+    padding-top: 50px;
+    overflow: hidden;
+  }
+  
+  // 居中
+  .aui-wrapper--center {
+    width: 1180px;
+    margin: 0 auto;
+    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.5);
+  }
+  @media (max-width: 1200px) {
+    .aui-wrapper--center {
+      width: auto;
+      margin: 0 15px;
+    }
+  }
+
+.el-dialog__wrapper.my-dialog {
+  top: 100px !important;
+  left: 212px !important;
+  right: 10px !important;
+  bottom: 10px !important;
+  z-index: 110 !important;
+}
+.aui-aside--top{
+  .el-dialog__wrapper.my-dialog {
+    top: 142px !important;
+    left: 0 !important;
+  }
+}
+.aui-sideMenuCollapse{
+  .el-dialog__wrapper.my-dialog {
+    left: 78px !important;
+  }
+}

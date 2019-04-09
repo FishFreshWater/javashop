@@ -1,0 +1,41 @@
+<view class="container">
+
+    <view class="order-goods">
+        <view class="h">
+            <view class="label">商品信息</view>
+            <view class="status">{{orderInfo.singleStatusName}}</view>
+        </view>
+        <view class="goods">
+            <view class="item" wx:for="{{orderGoods}}" wx:key="{{item.id}}">
+                <view class="img">
+                    <image src="{{item.thumbnailUrl}}"></image>
+                </view>
+                <view class="info">
+                    <view class="t">
+                        <text class="name">{{item.goodsName}}</text>
+                        <text class="number">x{{item.number}}</text>
+                    </view>
+                    <view class="attr">{{item.specValue||''}}</view>
+                    <view class="price">￥{{item.retailPrice}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <view class="order-bottom">
+        <view class="pay-fee">
+            <text class="label">退款金额：</text>
+            <text class="txt">￥{{orderInfo.actualPrice}}</text>
+        </view>
+    </view>
+     <view class="post-comment">
+        <view class="input-box">
+            <textarea class="content" focus="true" bindinput="bindInpuntValue" maxlength="140" placeholder="请填写退货原因" />
+            <text class="count">{{140 - content.length}}</text>
+        </view>
+        <view class="btns">
+            <view class="close" bindtap="onClose">取消</view>
+            <view class="post" bindtap="onPost">提交</view>
+        </view>
+    </view>
+</view>

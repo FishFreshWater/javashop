@@ -1,0 +1,53 @@
+<view class="container">
+  <view class='nav-tab-top'>
+    <view wx:for="{{tabList}}" wx:key="index" data-current="{{index}}" bindtap="swichNav" class="{{currentTab==index ? 'nav-item on' : 'nav-item'}}">
+        {{item}}
+    </view>
+  </view>
+  <view class='order-none' wx:if="{{orderList.length == 0}}">
+    <view class='order-none-box'>
+      <view class='order-img'>
+        <image class='img' src='../../../../../../static/images/icon/order.png'></image>
+      </view>
+      <text class='txt'>您还没有相关的订单</text>
+      <!-- <text class='sub-txt'>可以去看看有哪些想买</text>
+      <navigator url="../../index/index" open-type="switchTab">
+        <text class='refresh' >随便逛逛</text>
+      </navigator> -->
+    </view>
+  </view>
+  <view  wx:else class="orders">
+    <navigator url="../orderDetail/orderDetail?orderNumber={{item.orderNumber}}" class="order" wx:for="{{orderList}}" wx:key="{{item.id}}">
+      <view class="h">
+        <view class="l">订单编号：{{item.orderNumber}}</view>
+        <view class="r">{{item.singleStatusName}}</view>
+      </view>
+      <view class="goods" wx:for="{{item.shOrderGoodsEntityList}}" wx:key="{{gitem.id}}" wx:for-item="gitem">
+        <view class="img">
+          <image src="{{gitem.thumbnailUrl}}"></image>
+        </view>
+        <view class="info">
+          <text class="name">{{gitem.goodsName}}</text>
+          <text class="number">共{{gitem.number}}件商品</text>
+        </view>
+        <view class="status"></view>
+      </view>
+      <view class="b">
+        <view class="l">实付：￥{{item.actualPrice}}</view>
+        <view class="r">
+          <button class="btn" data-order-index="{{index}}" catchtap="payOrder" wx:if="{{item.handleOption.pay}}">去付款</button>
+        </view>
+      </view>
+    </navigator>
+  </view>
+
+  <view wx:if="{{orderList.length>6}}" class="loadmore">
+    <block wx:if="{{nomore}}">
+      <text>{{nomoreText}}</text>
+    </block>
+    <block wx:else>
+      <text class="iconfont icon-loading loading" space="nbsp"></text>
+      <text> {{loadmoreText}}</text>
+    </block>
+  </view>
+</view>

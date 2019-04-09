@@ -1,0 +1,27 @@
+
+a{
+  color: #333;
+  transition-duration: .3s;
+  text-decoration: none;
+  &:hover{
+    color: $text-active;
+    text-decoration: $text-active-desc;
+  }
+}
+
+.icon-svg {
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+  overflow: hidden;
+}
+
+svg:not(:root) {
+  overflow: hidden;
+}
+.text--muted{
+  color: $text-muted;
+}
+.text-primary{
+  color: $text-primary;
+}

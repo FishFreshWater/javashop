@@ -1,0 +1,40 @@
+<view class="container">
+  <show-empty-data wx:if="{{couponList.length<=0}}" showType="NO_COUPON"></show-empty-data>
+  <view wx:else class="coupon-list">
+    <block wx:for="{{couponList}}" wx:for-index="index" wx:for-item="item" wx:key="{{item.id}}">
+      <view class='coupon-item' catchtap='CouponExchange' data-setId="{{ item.id }}">
+        <view class='item'>
+          <image class='img-left' src='https://venice-test-bucket.oss-cn-beijing.aliyuncs.com/icon/blue.png'></image>
+          <view class='content'>
+            <view class='content-item'>
+              <view class='item-1 clearfix'>
+                <view class='price'>
+                  <text>￥</text>
+                  {{item.couponBalance}}
+                </view>
+                <view class='name-adr'>
+                  <view class='name ell'>{{item.couponName}}</view>
+                  <view class='adr ell'>满{{item.limitBalance}}元可用</view>
+                </view>
+              </view>
+              <view class='time'>
+                使用时间{{item.startDay}} ~ {{item.endDay}}
+              </view>
+              <image class='jt' src='../../../static/images/go.png'></image>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+
+  </view>
+  <view wx:if="{{couponList.length>6}}" class="loadmore">
+    <block wx:if="{{nomore}}">
+      <text>{{nomoreText}}</text>
+    </block>
+    <block wx:else>
+      <text class="iconfont icon-loading loading" space="nbsp"></text>
+      <text> {{loadmoreText}}</text>
+    </block>
+  </view>
+</view>

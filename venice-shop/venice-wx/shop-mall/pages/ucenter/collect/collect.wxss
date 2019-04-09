@@ -1,0 +1,131 @@
+page {
+  background: #f4f4f4;
+  min-height: 100%;
+}
+
+.container {
+  background: #f4f4f4;
+  min-height: 100%;
+}
+
+.collect-list {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  background: #fff;
+  padding-left: 30rpx;
+  border-top: 1px solid #e1e1e1;
+}
+
+.item {
+  height: 212rpx;
+  width: 720rpx;
+  background: #fff;
+  padding: 30rpx 30rpx 30rpx 0;
+  border-bottom: 1px solid #e1e1e1;
+}
+
+.item:last-child {
+  border-bottom: 1px solid #fff;
+}
+
+.item .img {
+  float: left;
+  width: 150rpx;
+  height: 150rpx;
+}
+
+.item .info {
+  float: right;
+  width: 540rpx;
+  height: 160rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 20rpx;
+}
+
+.item .info .name {
+  font-size: 28rpx;
+  color: #333;
+  line-height: 40rpx;
+  height: 40rpx;
+}
+
+.item .info .subtitle {
+  margin-top: 8rpx;
+  font-size: 24rpx;
+  color: #888;
+  line-height: 1.5;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+  display: -webkit-box;
+}
+
+.item .info .price {
+  margin-top: 8rpx;
+  font-size: 28rpx;
+  color: #333;
+  line-height: 40rpx;
+}
+
+/* 订单为空时用样式 */
+
+.order-none {
+  width: 100%;
+  position: relative;
+}
+
+.order-none-box {
+  padding: 150rpx 0;
+  text-align: center;
+}
+
+.order-none-box .order-img {
+  width: 220rpx;
+  height: 220rpx;
+  line-height: 220rpx;
+  display: block;
+  margin: 30rpx auto;
+  background-color: #ccc;
+  border-radius: 100%;
+  padding-top: 40rpx;
+}
+
+.order-none-box .order-img .img {
+  width: 120rpx;
+  height: 120rpx;
+  display: block;
+  margin: 0 auto 0;
+}
+
+.order-none-box .txt {
+  text-align: center;
+  font-size: 30rpx;
+  color: #333;
+  display: block;
+  margin: 20rpx auto;
+}
+
+.order-none-box .sub-txt {
+  text-align: center;
+  font-size: 22rpx;
+  color: #999;
+  display: block;
+  margin: 10rpx auto;
+}
+
+.order-none-box .refresh {
+  display: block;
+  width: 200rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  border: 1rpx solid #333;
+  color: #333;
+  font-size: 30rpx;
+  margin: 30rpx auto 0;
+}

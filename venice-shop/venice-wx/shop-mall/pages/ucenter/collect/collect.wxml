@@ -1,0 +1,24 @@
+<view class="container">
+  <view class='order-none' wx:if="{{collectList.length == 0}}">
+    <view class='order-none-box'>
+      <view class='order-img'>
+        <image class='img' src='../../../../../../static/images/icon/order.png'></image>
+      </view>
+      <text class='txt'>您还没有相关的收藏</text>
+      <text class='sub-txt'>可以去看看有哪些想买</text>
+      <navigator url="/pages/index/index">
+        <text class='refresh' >随便逛逛</text>
+      </navigator>
+    </view>
+  </view>
+  <view wx:else class="collect-list">
+    <view class="item clearfix" bindtap="openGoods" bindtouchstart="touchStart" bindtouchend="touchEnd" wx:for="{{collectList}}" wx:key="{{item.id}}" data-index="{{index}}">
+      <image class="img" src="{{item.primaryPicUrl}}"></image>
+      <view class="info">
+        <view class="name ell">{{item.goodsName}}</view>
+        <view class="subtitle">{{item.goodsBrief}}</view>
+        <view class="price">￥{{item.retailPrice}}</view>
+      </view>
+    </view>
+  </view>
+</view>

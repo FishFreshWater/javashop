@@ -1,0 +1,58 @@
+<view class="container">
+  <view class='getCoupon'>
+    <navigator url='/pages/ucenter/couponIndex/couponIndex'>
+      <image class='coupon-img' src='https://venice-test-bucket.oss-cn-beijing.aliyuncs.com/icon/quan.png'></image>
+    </navigator>
+  </view>
+  <!-- <view class="help">使用说明</view> -->
+  <view class='coupon-nav'>
+    <view class="{{ status == 1 ? 'nav-item on' : 'nav-item' }}" catchtap='couponListKy'>
+      可用({{useable}})
+    </view>
+    <view class="{{ status == 2 ? 'nav-item on' : 'nav-item' }}" catchtap='couponListYy'>
+      已用({{used}})
+    </view>
+    <view class="{{ status == 3 ? 'nav-item on' : 'nav-item' }}" catchtap='couponlistGq'>
+      过期({{expir}})
+    </view>
+  </view>
+  <show-empty-data wx:if="{{CouponUserList.length<=0}}" showType="NO_COUPON"></show-empty-data>
+  <view wx:else class="coupon-list">
+    <block wx:for="{{CouponUserList}}" wx:for-index="index" wx:for-item="item" wx:key="{{item.id}}">
+      <view class='coupon-item'>
+        <view class="{{ item.couponStatus == 1 ? 'item' : 'item gray' }}">
+          <image class='img-left' src='https://venice-test-bucket.oss-cn-beijing.aliyuncs.com/icon/blue.png'></image>
+          <view class='content'>
+            <view class='content-item'>
+              <view class='item-1 clearfix'>
+                <view class='price'>
+                  <text>￥</text> {{item.couponBalance}}
+                </view>
+                <view class='name-adr'>
+                  <view class='name ell'>{{item.couponName}}</view>
+                  <view class='adr ell'>满{{ item.limitBalance }}元可用</view>
+                </view>
+              </view>
+              <view class='time'>
+                使用时间{{item.effectTime}} ~ {{item.expirTime}}
+              </view>
+              <image class='jt' src='../../../static/images/go.png'></image>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+
+  </view>
+
+  <view wx:if="{{CouponUserList.length>6}}" class="loadmore">
+    <block wx:if="{{nomore}}">
+      <text>{{nomoreText}}</text>
+    </block>
+    <block wx:else>
+      <text class="iconfont icon-loading loading" space="nbsp"></text>
+      <text> {{loadmoreText}}</text>
+    </block>
+  </view>
+
+</view>

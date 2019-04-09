@@ -1,0 +1,16 @@
+.crumbs {
+  width: 100%;
+  line-height: 36px;
+}
+.crumb-item {
+  float: left;
+  font-size: 13px;
+}
+.crumb-item__title {
+  color: #333;
+  cursor: pointer;
+}
+.crumb-item__sep {
+  color: #666;
+  margin: 0 5px;
+}

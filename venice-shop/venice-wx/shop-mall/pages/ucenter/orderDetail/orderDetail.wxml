@@ -1,0 +1,77 @@
+<view class="container">
+    <view class="order-info">
+        <view class="item-a">下单时间：{{orderInfo.addTime}}</view>
+        <view class="item-b">订单编号：{{orderInfo.orderNumber}}</view>
+        <view class="item-c">
+            <view class="l">实付：<text class="cost">￥{{orderInfo.actualPrice}}</text></view>
+            <view class="r">
+                <view wx:if="{{handleOption.pay}}">
+                  <view class="btn" bindtap="cancelOrder">取消订单</view>
+                  <view class="btn active" bindtap="payOrder">去付款</view>
+                </view>
+                <view wx:elif="{{handleOption.refund}}">
+                 <navigator url="../orderRefund/orderRefund?orderNumber={{orderInfo.orderNumber}}">
+                  <view class="btn active">申请退款</view>
+                  </navigator>
+                </view>
+                <view wx:elif="{{handleOption.confirm}}">
+                  <view class="btn" bindtap="returnOrder">申请退货</view>
+                  <view class="btn active" bindtap="confirmOrder">确认收货</view>
+                </view>
+                <!-- <view wx:else>
+                  <view class="btn active" bindtap="cancelOrder">取消订单</view>
+                </view> -->
+            </view>
+        </view>
+    </view>
+
+    <view class="order-goods">
+        <view class="h">
+            <view class="label">商品信息</view>
+            <view class="status">{{orderInfo.singleStatusName}}</view>
+        </view>
+        <view class="goods">
+            <view class="item" wx:for="{{orderGoods}}" wx:key="{{item.id}}">
+                <view class="img">
+                    <image src="{{item.thumbnailUrl}}"></image>
+                </view>
+                <view class="info">
+                    <view class="t">
+                        <text class="name">{{item.goodsName}}</text>
+                        <text class="number">x{{item.number}}</text>
+                    </view>
+                    <view class="attr">{{item.specValue||''}}</view>
+                    <view class="price">￥{{item.retailPrice}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <view class="order-bottom">
+        <view class="address">
+            <view class="t">
+                <text class="name">{{orderInfo.consignee}}</text>
+                <text class="mobile">{{orderInfo.mobile}}</text>
+            </view>
+            <view class="b">{{orderInfo.fullRegion + orderInfo.address}}</view>
+        </view>
+        <view class="total">
+            <view class="t">
+                <text class="label">商品合计：</text>
+                <text class="txt">￥{{orderInfo.goodsPrice}}</text>
+            </view>
+            <view class="t">
+                <text class="label">运费：</text>
+                <text class="txt">￥{{orderInfo.freight}}</text>
+            </view>
+            <view class="t" wx:if="{{orderInfo.couponPrice.length > 0 }}">
+                <text class="label">优惠券:</text>
+                <text class="txt">￥-{{orderInfo.couponPrice}}</text>
+            </view>
+        </view>
+        <view class="pay-fee">
+            <text class="label">实付：</text>
+            <text class="txt">￥{{orderInfo.actualPrice}}</text>
+        </view>
+    </view>
+</view>

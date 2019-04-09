@@ -1,0 +1,101 @@
+<view class="container">
+  <view class="order-info">
+    <view class="item-a">申请状态：{{orderReturn.statusName}}</view>
+    <view class="item-a">审核状态：{{orderReturn.checkStatusName}}</view>
+    <view class="item-a" wx:if="{{orderReturn.checkStatus == 2}}">审核状态：{{orderReturn.checkComment}}</view>
+    <view class="item-b">订单编号：{{orderReturn.number}}</view>
+    <view class="item-c">
+      <view class="l">退款金额：
+        <text class="cost">￥{{orderReturn.amount}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="order-goods">
+    <view class="h">
+      <view class="label">商品信息</view>
+    </view>
+    <view class="goods">
+      <view class="item" wx:for="{{orderGoods}}" wx:key="{{item.id}}">
+        <view class="img">
+          <image src="{{item.thumbnailUrl}}"></image>
+        </view>
+        <view class="info">
+          <view class="t clearfix">
+            <text class="name">{{item.goodsName}}</text>
+            <text class="number">x{{item.number}}</text>
+          </view>
+          <view class="attr">{{item.specValue||''}}</view>
+          <view class="price">￥{{item.retailPrice}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="order-bottom">
+    <view class="total">
+      <view class="t">
+        <text class="label">申请类型：</text>
+        <text class="txt">{{orderReturn.typeName}}</text>
+      </view>
+      <view class="t">
+        <text class="label">退款原因：</text>
+        <text class="txt">{{orderReturn.reason}}</text>
+      </view>
+      <view class="t">
+        <text class="label">申请时间：</text>
+        <text class="txt">{{orderReturn.createTime}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="order-goods" wx:if="{{orderReturn.returnType == 1 && orderReturn.checkStatus !=0}}">
+    <view class="h">
+      <view class="label">提交物流订单</view>
+    </view>
+    <view class='logistics-box'>
+      <view class='logistics' wx:if="{{!isCommit}}">
+        <form bindsubmit="formSubmitLogistics">
+          <view class="weui-cell">
+            <view class="weui-cell__hd">
+              <text class="weui-label">物流公司：</text>
+            </view>
+            <view class="weui-cell__bd">
+              <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+                <view class="picker">
+                  {{array[index]}}
+                </view>
+              </picker>
+            </view>
+          </view>
+          <view class="weui-cell">
+            <view class="weui-cell__hd">
+              <text class="weui-label">物流单号：</text>
+            </view>
+            <view class="weui-cell__bd">
+              <input name="tracking" class="weui-input" maxlength='40' type="number" placeholder="请输入物流单号" />
+            </view>
+          </view>
+          <view class="weui-cell">
+            <view class="weui-cell__hd">
+              <text class="weui-label">发货备注：</text>
+            </view>
+            <view class="weui-cell__bd">
+              <input name="expressDesc" class="weui-input" maxlength='11' type="number" placeholder="请输入发货备注" />
+            </view>
+          </view>
+          <view class="weui-btn-area">
+            <button class="weui-btn weui-btn_primary" formType="submit">提交</button>
+          </view>
+        </form>
+      </view>
+      <view wx:else class='logistics-ed'>
+        <view class='item'>
+          您已经提交了物流单号:
+          <text>{{orderReturn.expressCrop}}: {{orderReturn.tracking}}</text>
+        </view>
+        <view class='submit-again' catchtap='submitAgain'>重新提交</view>
+      </view>
+    </view>
+  </view>
+</view>

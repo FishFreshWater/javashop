@@ -1,0 +1,86 @@
+.message {
+  height: 100%;
+  border-left: 1px solid #ddd;
+  position: relative;
+  background: #fff;
+}
+.message__header {
+  color: #333;
+  line-height: 50px;
+  border-bottom: 1px solid #e2e5ec;
+  padding-left: 30px;
+  font-size: 14px;
+  position: relative;
+}
+.message__close {
+  cursor: pointer;
+  position: absolute;
+  height: 24px;
+  width: 24px;
+  right: 20px;
+  top: 12px;
+  color: #ddd;
+  &:hover {
+    color: #333;
+  }
+  .icon-svg {
+    display: block;
+    height: 24px;
+    width: 24px;
+  }
+}
+.message__content{
+  width: 100%;
+}
+.message__loading {
+  line-height: 50px;
+  background: #fff;
+  width: 100%;
+  top: 0;
+  text-align: center;
+  color: #108cee;
+}
+.message__nores {
+  line-height: 100px;
+  text-align: center;
+}
+.message-item {
+  padding: 14px 0;
+  border-bottom: 1px solid #e8ebee;
+  font-size: 12px;
+}
+.message-item__cate {
+  color: #666;
+}
+.message-item__time {
+  color: #999;
+  float: right;
+}
+.message-item__desc {
+  margin-top: 10px;
+}
+.message-list {
+  width: 100%;
+  li {
+    padding: 0 30px;
+    &:hover {
+      background: #f5fbff;
+    }
+  }
+}
+.message-item__mod {
+  display: inline-block;
+  height: 15px;
+  line-height: 13px;
+  padding: 0 4px;
+  margin-right: 3px;
+  text-align: center;
+  &.is-rank1 {
+    border: 1px solid #f00;
+    color: #f00;
+  }
+  &.is-rank2 {
+    border: 1px solid #f38900;
+    color: #f38900;
+  }
+}

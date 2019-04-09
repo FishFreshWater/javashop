@@ -1,0 +1,76 @@
+.content--setting{
+  position: relative;
+}
+.setting-main{
+  background: #fff;
+  margin-right: 300px;
+  margin-left: 0;
+  border-radius: 5px;
+}
+.setting-sec{
+  padding-top: 10px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #E3E5EB;
+}
+.setting-frm{
+  padding: 10px 30px 0px 20px;
+}
+.setting-aside{
+  position: absolute;
+  border-radius: 5px;
+  background: #fff;
+  width: 280px;
+  right: 0;
+  top: 0;
+}
+.setting-hd{
+  span{
+    font-size: 14px;
+    color: #333;
+    font-weight: bold;
+    padding: 14px 18px;
+    display: inline-block;
+    zoom: 1;
+    &:before{
+      content: '';
+      display: inline-block;
+      zoom: 1;
+      vertical-align: middle;
+      width: 4px;
+      height: 16px;
+      background: #0786e9;
+      margin-right: 10px;
+    }
+  }
+  ._opbtn{
+    padding: 0;
+    float: right;
+    margin: 8px 20px;
+    color: #108cee;
+    font-style: normal;
+    line-height: 28px;
+    font-size: 12px;
+  }
+}
+.setting-result{
+  padding: 0 20px 10px;
+  line-height: 26px;
+  font-size: 13px;
+  ._grp{
+    margin-bottom: 5px;
+  }
+  ._lab{
+    float: left;
+    text-align: left;
+    color: #666;
+    width: 70px;
+  }
+  ._content{
+    margin-left: 70px;
+    line-height: 24px;
+    white-space: normal;
+    word-break: break-all;
+    text-align: justify;
+    padding: 2px 0;
+  }
+}

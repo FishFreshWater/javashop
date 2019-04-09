@@ -1,0 +1,13 @@
+<view class="container">
+  <view class='page-head'>
+    <view class="page-head-title">微信登录</view>
+    <view class="page-head-line"></view>
+    <view class="page-head-desc">请确认授权，获取用户信息，即可继续操作</view>
+    </view>
+  <view class="page-body">
+    <view class='btn-area'>
+      <button type='primary' open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>
+      <button type="default" bindtap='goBack'>取消返回</button>
+    </view>
+  </view>
+</view>

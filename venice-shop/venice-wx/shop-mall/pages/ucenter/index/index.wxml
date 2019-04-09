@@ -1,0 +1,94 @@
+<view class="container">
+  <button class="userinfo" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">
+		<image wx:if="{{userInfo && userInfo.avatarUrl}}" class="userinfo-avatar" src="{{ userInfo.avatarUrl }}" background-size="cover"></image>
+		<text class="userinfo-nickname">{{ userInfo.nickName }}</text>
+	</button>
+
+</view>
+<view class='order-list-box'>
+  <view class='order-menu'>
+    <view class='menu-top'>
+      <view class="weui-cells" style='margin-top: 20rpx;'>
+        <navigator url="/pages/ucenter/order/order" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+          <view class="weui-cell__hd">
+          </view>
+          <view class="weui-cell__bd" style="font-weight: 700">我的订单</view>
+          <view class="weui-cell__ft weui-cell__ft_in-access">
+            查看全部订单
+          </view>
+        </navigator>
+      </view>
+    </view>
+    <view class='menu-body'>
+      <view class='menu-item'>
+        <navigator url="/pages/ucenter/order/order?status=1">
+          <image class='item-img' src='https://venice-test-bucket.oss-cn-beijing.aliyuncs.com/icon/pay.png'></image>
+          <text class='txt'>待付款</text>
+          <view class='tips' wx:if="{{ pending }}">
+            <text class='num'>{{ pending }}</text>
+          </view>
+        </navigator>
+      </view>
+      <view class='menu-item'>
+        <navigator url="/pages/ucenter/order/order?status=2">
+          <image class='item-img' src='https://venice-test-bucket.oss-cn-beijing.aliyuncs.com/icon/send.png'></image>
+          <text class='txt'>待发货</text>
+          <view class='tips' wx:if="{{ payed > 0 }}">
+            <text class='num'>{{ payed }}</text>
+          </view>
+        </navigator>
+      </view>
+      <view class='menu-item'>
+        <navigator url="/pages/ucenter/order/order?status=6">
+          <image class='item-img' src='https://venice-test-bucket.oss-cn-beijing.aliyuncs.com/icon/goods.png'></image>
+          <text class='txt'>待收货</text>
+          <view class='tips' wx:if="{{ send > 0 }}">
+            <text class='num'>{{ send }}</text>
+          </view>
+        </navigator>
+      </view>
+      <view class='menu-item'>
+        <navigator url="../afterSales/afterSales">
+          <image class='item-img' src='https://venice-test-bucket.oss-cn-beijing.aliyuncs.com/icon/customer.png'></image>
+          <text class='txt'>售后服务</text>
+          <view class='tips' wx:if="{{ refund > 0 }}">
+            <text class='num'>{{ refund }}</text>
+          </view>
+        </navigator>
+      </view>
+    </view>
+  </view>
+  <view class='order-list'>
+    <view class="weui-cells" style='margin-top: 0'>
+      <navigator url="/pages/ucenter/collect/collect" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <view class="weui-cell__hd">
+            <image src="https://venice-test-bucket.oss-cn-beijing.aliyuncs.com/icon/collect.png" class='order-icon'></image>
+        </view>
+        <view class="weui-cell__bd">我的收藏</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+      </navigator>
+      <navigator url="../coupon/coupon" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <view class="weui-cell__hd">
+            <image src="https://venice-test-bucket.oss-cn-beijing.aliyuncs.com/icon/coupon.png" class='order-icon'></image>
+        </view>
+        <view class="weui-cell__bd">优惠券</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+      </navigator>
+      <navigator url="../address/address" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <view class="weui-cell__hd">
+            <image src="https://venice-test-bucket.oss-cn-beijing.aliyuncs.com/icon/adr.png" class='order-icon'></image>
+        </view>
+        <view class="weui-cell__bd">地址管理</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+      </navigator>
+      <view class="weui-cell weui-cell_access">
+        <view class="weui-cell__hd">
+            <image src="https://venice-test-bucket.oss-cn-beijing.aliyuncs.com/icon/version.png" class='order-icon'></image>
+        </view>
+        <view class="weui-cell__bd">版本号</view>
+        <view class="weui-cell__ft">v1.0</view>
+      </view>
+    </view>
+  </view>
+</view>
+  <!--<view class="logout" bindtap="exitLogin">退出登录</view>-->
